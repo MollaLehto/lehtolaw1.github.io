@@ -81,24 +81,28 @@
 					</section>
 
 				<!-- Footer -->
-<section id="footer">
+				<section id="footer">
     <div class="inner">
         <h2 class="major">Ota yhteyttä</h2>
         <p>Yhteydenotto on maksuton eikä sido toimeksiantoon.</p>
 
         <!-- Contact form -->
-        <form id="contactForm" method="post" action="https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/">
+        <form id="contactForm" method="post">
             <div class="fields">
                 <div class="field">
-                    <label for="Nimi">Nimi</label>
+                    <label for="name">Nimi</label>
                     <input type="text" name="name" id="name" required />
                 </div>
                 <div class="field">
-                    <label for="Sähköposti">Sähköposti</label>
+                    <label for="email">Sähköposti</label>
                     <input type="email" name="email" id="email" required />
                 </div>
                 <div class="field">
-                    <label for="Viesti">Viesti</label>
+                    <label for="phone">Puhelinnumero (valinnainen)</label>
+                    <input type="tel" name="phone" id="phone" placeholder="+358 400 259 768" />
+                </div>
+                <div class="field">
+                    <label for="message">Viesti</label>
                     <textarea name="message" id="message" rows="4" required></textarea>
                 </div>
             </div>
@@ -106,6 +110,8 @@
                 <li><input type="submit" value="Lähetä viesti" /></li>
             </ul>
         </form>
+
+        <!-- Submission message -->
         <div id="formMessage" style="margin-top:10px;"></div>
 
         <!-- Contact info -->
@@ -135,32 +141,33 @@
 
 <!-- JavaScript to submit form via AJAX/fetch -->
 <script>
-const form = document.getElementById('contactForm');
-const messageDiv = document.getElementById('formMessage');
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const messageDiv = document.getElementById('formMessage');
+    const zapierWebhook = "https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/";
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent page reload
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent page reload
 
-    const formData = new FormData(form);
+        const formData = new FormData(form); // Includes name, email, phone (optional), message
 
-    fetch(form.action, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        messageDiv.style.color = "green";
-        messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
-        form.reset();
-    })
-    .catch(err => {
-        messageDiv.style.color = "red";
-        messageDiv.textContent = "Virhe viestin lähetyksessä.";
-        console.error(err);
+        fetch(zapierWebhook, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
+            form.reset();
+        })
+        .catch(err => {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Virhe viestin lähetyksessä.";
+            console.error(err);
+        });
     });
 });
 </script>
-
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -172,6 +179,7 @@ form.addEventListener('submit', function(e) {
 	</body>
 
 </html>
+
 
 
 
