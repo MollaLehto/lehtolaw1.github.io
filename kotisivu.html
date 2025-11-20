@@ -127,32 +127,34 @@
 					</section>
 
 				<!-- Footer -->
-		<section id="footer">
+<section id="footer">
     <div class="inner">
         <h2 class="major">Ota yhteyttä</h2>
-        <p>Yhteydenotto on maksuton eikä sido toimeksiantoon. </p>
+        <p>Yhteydenotto on maksuton eikä sido toimeksiantoon.</p>
 
-        <!-- Insert your Zapier Catch Hook URL below -->
-        <form method="post" action="https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/">
+        <!-- Contact form -->
+        <form id="contactForm" method="post" action="https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/">
             <div class="fields">
                 <div class="field">
                     <label for="Nimi">Nimi</label>
-                    <input type="text" name="name" id="name" />
+                    <input type="text" name="name" id="name" required />
                 </div>
                 <div class="field">
                     <label for="Sähköposti">Sähköposti</label>
-                    <input type="email" name="email" id="email" />
+                    <input type="email" name="email" id="email" required />
                 </div>
                 <div class="field">
                     <label for="Viesti">Viesti</label>
-                    <textarea name="message" id="message" rows="4"></textarea>
+                    <textarea name="message" id="message" rows="4" required></textarea>
                 </div>
             </div>
             <ul class="actions">
                 <li><input type="submit" value="Lähetä viesti" /></li>
             </ul>
         </form>
+        <div id="formMessage" style="margin-top:10px;color:green;"></div>
 
+        <!-- Contact info -->
         <ul class="contact">
             <li class="icon solid fa-home">
                 Lehto Law<br />
@@ -167,6 +169,7 @@
             </li>
         </ul>
 
+        <!-- Copyright -->
         <ul class="copyright">
             <li>&copy; Lehto Law. Kaikki oikeudet pidätetään.</li>
             <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -175,6 +178,40 @@
 </section>
 
 </div>
+
+<!-- JavaScript to submit form via AJAX/fetch -->
+<script>
+const form = document.getElementById('contactForm');
+const messageDiv = document.getElementById('formMessage');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent page reload
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
+            form.reset();
+        } else {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Virhe viestin lähetyksessä.";
+        }
+    })
+    .catch(err => {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Virhe viestin lähetyksessä.";
+        console.error(err);
+    });
+});
+</script>
 
 
 		<!-- Scripts -->
@@ -188,6 +225,7 @@
 	</body>
 
 </html>
+
 
 
 
