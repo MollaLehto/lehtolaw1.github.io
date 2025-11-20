@@ -136,20 +136,19 @@
         <form id="contactForm" method="post" action="https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/">
             <div class="fields">
                 <div class="field">
-                    <label for="Nimi">Nimi</label>
+                    <label for="name">Nimi</label>
                     <input type="text" name="name" id="name" required />
                 </div>
                 <div class="field">
-                    <label for="Sähköposti">Sähköposti</label>
+                    <label for="email">Sähköposti</label>
                     <input type="email" name="email" id="email" required />
                 </div>
-				 <div class="fields">
                 <div class="field">
-                    <label for="Puhelinnumero">Puhelinnumero</label>
-                    <input type="text" name="name" id="name" required />
+                    <label for="phone">Puhelinnumero</label>
+                    <input type="tel" name="phone" id="phone" placeholder="+358 400 259 768" required />
                 </div>
                 <div class="field">
-                    <label for="Viesti">Viesti</label>
+                    <label for="message">Viesti</label>
                     <textarea name="message" id="message" rows="4" required></textarea>
                 </div>
             </div>
@@ -208,8 +207,8 @@ form.addEventListener('submit', function(e) {
         messageDiv.textContent = "Virhe viestin lähetyksessä.";
         console.error(err);
     });
-});
-</script>
+})
+
 
 
 		<!-- Scripts -->
@@ -223,6 +222,7 @@ form.addEventListener('submit', function(e) {
 	</body>
 
 </html>
+
 
 
 
