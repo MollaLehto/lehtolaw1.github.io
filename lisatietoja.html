@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+<title>Lehto Law</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Perheoikeus</a></h1>
+						<nav>
+							<a href="#menu">Valikko</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Valikko</h2>
+							<ul class="links">
+								<li><a href="kotisivu.html">Kotisivu</a></li>
+								<li><a href="perheoikeus.html">Perheoikeus</a></li>
+								<li><a href="sopimusoikeus.html">Sopimusoikeus</a></li>
+								<li><a href="yritysoikeus.html">Yritysoikeus</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Perheoikeus</h2>
+								<p>Testamentit, edunvalvontavaltakirjat, perukirjat sekä ositus- ja perinnönjakosopimukset</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+
+									<h3 class="major">Testamentit</h3>
+									<p>Kirjoita mitä testamenteistä tulee tietää</p>
+
+									<p>Kirjoita mitä testamenteistä tulee tietää</p>
+
+									<h3 class="major">Edunvalvontavaltakirjat</h3>
+									<p>Kirjoita mitä edunvalvontavaltakirjoista tulee tietää</p>
+
+									<section class="features">
+										<article>
+											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<h3 class="major">Perukirjat</h3>
+											<p>Kirjoita mitä perukirjoista tulee tietää</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<h3 class="major">Ositus- ja perinnönjako</h3>
+											<p>Kirjoita mitä ositus- ja perinnönjaosta tulee tietää</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+									</section>
+
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+    <div class="inner">
+        <h2 class="major">Ota yhteyttä</h2>
+        <p>Yhteydenotto on maksuton eikä sido toimeksiantoon.</p>
+
+        <!-- Contact form -->
+        <form id="contactForm" method="post">
+            <div class="fields">
+                <div class="field">
+                    <label for="name">Nimi</label>
+                    <input type="text" name="name" id="name" required />
+                </div>
+                <div class="field">
+                    <label for="email">Sähköposti</label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+                <div class="field">
+                    <label for="phone">Puhelinnumero (valinnainen)</label>
+                    <input type="tel" name="phone" id="phone" placeholder="+358 400 259 768" />
+                </div>
+                <div class="field">
+                    <label for="message">Viesti</label>
+                    <textarea name="message" id="message" rows="4" required></textarea>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Lähetä viesti" /></li>
+            </ul>
+        </form>
+
+        <!-- Submission message -->
+        <div id="formMessage" style="margin-top:10px;"></div>
+
+        <!-- Contact info -->
+        <ul class="contact">
+            <li class="icon solid fa-home">
+                Lehto Law<br />
+                Turku, Helsinki, Hämeenlinna<br />
+            </li>
+            <li class="icon solid fa-phone">+358400259768</li>
+            <li class="icon solid fa-envelope"><a href="#">molla.lehto@gmail.com</a></li>
+            <li class="icon brands fa-linkedin">
+                <a href="https://www.linkedin.com/in/mollalehto/" target="_blank" rel="noopener">
+                    https://www.linkedin.com/in/mollalehto/
+                </a>
+            </li>
+        </ul>
+
+        <!-- Copyright -->
+        <ul class="copyright">
+            <li>&copy; Lehto Law. Kaikki oikeudet pidätetään.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+</section>
+
+</div>
+
+<!-- JavaScript to submit form via AJAX/fetch -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const messageDiv = document.getElementById('formMessage');
+    const zapierWebhook = "https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/";
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent page reload
+
+        const formData = new FormData(form); // Includes name, email, phone (optional), message
+
+        fetch(zapierWebhook, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
+            form.reset();
+        })
+        .catch(err => {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Virhe viestin lähetyksessä.";
+            console.error(err);
+        });
+    });
+});
+</script>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+
+</html>
+
+
+
+
+
+
+
