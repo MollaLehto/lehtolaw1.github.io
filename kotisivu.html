@@ -152,7 +152,7 @@
                 <li><input type="submit" value="Lähetä viesti" /></li>
             </ul>
         </form>
-        <div id="formMessage" style="margin-top:10px;color:green;"></div>
+        <div id="formMessage" style="margin-top:10px;"></div>
 
         <!-- Contact info -->
         <ul class="contact">
@@ -188,22 +188,15 @@ form.addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent page reload
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
 
     fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: formData
     })
     .then(response => {
-        if (response.ok) {
-            messageDiv.style.color = "green";
-            messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
-            form.reset();
-        } else {
-            messageDiv.style.color = "red";
-            messageDiv.textContent = "Virhe viestin lähetyksessä.";
-        }
+        messageDiv.style.color = "green";
+        messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
+        form.reset();
     })
     .catch(err => {
         messageDiv.style.color = "red";
@@ -225,6 +218,7 @@ form.addEventListener('submit', function(e) {
 	</body>
 
 </html>
+
 
 
 
