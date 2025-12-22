@@ -139,32 +139,6 @@ Palkkio voidaan sopia myös kiinteäksi, mikäli toimeksiantoon kuluva aika pyst
 
         <!-- Contact form -->
         <form id="contactForm" method="post">
-            <div class="fields">
-                <div class="field">
-                    <label for="name">Nimi</label>
-                    <input type="text" name="name" id="name" required />
-                </div>
-                <div class="field">
-                    <label for="email">Sähköposti</label>
-                    <input type="email" name="email" id="email" required />
-                </div>
-                <div class="field">
-                    <label for="phone">Puhelinnumero (valinnainen)</label>
-                    <input type="tel" name="phone" id="phone" placeholder="+358 400 259 768" />
-                </div>
-                <div class="field">
-                    <label for="message">Viesti</label>
-                    <textarea name="message" id="message" rows="4" required></textarea>
-                </div>
-            </div>
-            <ul class="actions">
-                <li><input type="submit" value="Lähetä viesti" /></li>
-            </ul>
-        </form>
-
-        <!-- Submission message -->
-        <div id="formMessage" style="margin-top:10px;"></div>
-
         <!-- Contact info -->
         <ul class="contact">
             <li class="icon solid fa-home">
@@ -179,46 +153,10 @@ Palkkio voidaan sopia myös kiinteäksi, mikäli toimeksiantoon kuluva aika pyst
                 </a>
             </li>
         </ul>
-
-        <!-- Copyright -->
-        <ul class="copyright">
-            <li>&copy; Lehto Law. Kaikki oikeudet pidätetään.</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-        </ul>
-    </div>
 </section>
 
 </div>
 
-<!-- JavaScript to submit form via AJAX/fetch -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contactForm');
-    const messageDiv = document.getElementById('formMessage');
-    const zapierWebhook = "https://hooks.zapier.com/hooks/catch/25440842/uz9m75x/";
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent page reload
-
-        const formData = new FormData(form); // Includes name, email, phone (optional), message
-
-        fetch(zapierWebhook, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            messageDiv.style.color = "green";
-            messageDiv.textContent = "Viesti lähetetty onnistuneesti!";
-            form.reset();
-        })
-        .catch(err => {
-            messageDiv.style.color = "red";
-            messageDiv.textContent = "Virhe viestin lähetyksessä.";
-            console.error(err);
-        });
-    });
-});
-</script>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
